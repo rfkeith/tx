@@ -1,0 +1,17 @@
+<div class="row">
+    <div class="col-md-2 col-lg-offset-3 text-center well drop-zone" nv-file-drop uploader="ctrl.uploader" options="{section:'PASSPORT'}">
+        {{ctrl.passportLabel}}
+        <input type="file" nv-file-select uploader="ctrl.uploader" options="{section:'PASSPORT'}" ng-show='ctrl.passport === undefined'></input>
+        <span ng-show="ctrl.passport !== undefined" class="glyphicon glyphicon-saved pull-right"></span>
+    </div>
+    <div class="col-md-2 text-center well drop-zone" nv-file-drop uploader="ctrl.uploader" options="{section:'POA'}">
+        {{ctrl.poaLabel}}
+        <input type="file" nv-file-select uploader="ctrl.uploader" options="{section:'POA'}" ng-show='ctrl.poa === undefined'></input>
+        <span ng-show="ctrl.poa !== undefined" class="glyphicon glyphicon-saved pull-right"></span>
+    </div>
+    <div class="col-md-2 text-center well drop-zone" nv-file-drop uploader="ctrl.uploader" options="{section:'SIGNATURE'}" ng-click="ctrl.open('#signature')">
+       {{ctrl.signatureLabel}}
+        <input type="file" nv-file-select uploader="ctrl.uploader" options="{section:'SIGNATURE'}" id="signature" ng-show='ctrl.signature === undefined'></input>
+        <span ng-show="ctrl.signature !== undefined" class="glyphicon glyphicon-saved pull-right" ng-class="{green: ctrl.signature !== undefined}"></span>
+    </div>
+</div>

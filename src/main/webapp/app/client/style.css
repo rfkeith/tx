@@ -1,0 +1,28 @@
+.centered {
+    position: fixed ;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%)
+}
+
+html, body {
+    background: url('images/background-defaultwhite.jpg');
+    font-family: CelesteWeb, Georgia, "Times New Roman", Times, serif;
+}
+
+.drop-zone {
+    border: 2px dotted cadetblue;
+    border-collapse: collapse;
+}
+
+.green {
+    color: green
+}
+
+.background-brown {
+    background: #54301a;
+}
+
+.white {
+    color: white !important;
+}

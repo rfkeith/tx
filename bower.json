@@ -1,0 +1,10 @@
+{
+    "name" : "tx"
+    , "dependencies" : {
+        "angular" : "latest"
+        , "angular-route" : "latest"
+        , "bootstrap" : "latest"
+        , "angular-file-upload" : "latest"
+        , "angular-websocket" : "latest"
+    }
+}
