@@ -80,16 +80,35 @@ txClient.directive("txIdentity", function() {
         }
 }])
 
-txClient.controller('inboxController', ["$scope", function($scope){
+txClient.service('sse', ['$rootScope', function($rootScope){
+    var sse = new EventSource('rest/events/documents')
+    return {
+        addEventListener : function(eventName,callback) {
+            sse.addEventListener(eventName, function(){
+                var args = arguments;
+                $rootScope.$apply(function() {
+                    callback.apply(sse,args);
+                })
+            })
+        }
+    }
+}])
+
+txClient.directive("txInboxBadge", function() {
+    return {
+        scope:{}
+        , templateUrl: 'app/client/components/inboxBadge.html'
+        , replace : true
+        , controller : "inboxController"
+        , controllerAs : "ctrl"
+    }
+}).controller('inboxController', ["sse", function(sse){
     var ic = this;
-    ic.events = []
-    $scope.count = 0
-    ic.dataStream = new EventSource("rest/events/documents")
-    ic.dataStream.addEventListener('open', function(e){ console.log(e)}, false)
-    ic.dataStream.addEventListener('message',function(msg){
-        console.log(msg.data + ic.events.length)
-        ic.events.push(JSON.parse(msg.data))
-        $scope.count = ic.events.length
-    }, false)    
-    
+    ic.events = []    
+    ic.unreadCount = 101
+    sse.addEventListener("message", function(e){
+        console.log(e)
+        ic.events.push(e)
+        ic.unreadCount = ic.events.length
+    })
 }])
